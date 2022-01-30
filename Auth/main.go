@@ -29,7 +29,7 @@ func main() {
 		c.JSON(200, gin.H{"success": "Access Granted:2"})
 	})
 
-	router.RUN(":" + port)
+	router.Run(":" + port)
 
 	fmt.Println("Auth testing.")
 }
