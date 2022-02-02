@@ -21,6 +21,8 @@ func DBinstance() *mongo.Client {
 	client, err := mongo.NewClient(options.Client().ApplyURI(MongoDb))
 	if err != nil {
 		log.Fatal(err)
+	} else {
+		log.Printf("Mongo cluster added..")
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -29,7 +31,6 @@ func DBinstance() *mongo.Client {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	fmt.Println("Connected to MongoDB!")
 	return client
 
