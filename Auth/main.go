@@ -15,6 +15,7 @@ func main() {
 		port = "8000"
 	}
 
+	fmt.Println("Server running on port:",port)
 	router := gin.New()
 	router.Use(gin.Logger())
 

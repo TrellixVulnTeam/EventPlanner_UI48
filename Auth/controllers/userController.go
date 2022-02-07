@@ -44,9 +44,13 @@ func VerifyPassword(userPassword string, providedPassword string) (bool, string)
 }
 
 func Signup() gin.HandlerFunc {
-	fmt.Println("Mein Chal raha hun bkl.")
 
 	return func(c *gin.Context) {
+		fmt.Println("Hitt")
+		c.Header("Content-Type", "application/x-www-form-urlencoded")
+		c.Header("Access-Control-Allow-Origin","*")
+		c.Header("Access-Control-Allow-Methods","POST")
+		c.Header("Access-Control-Allow-Headers","Content-Type")
 		fmt.Println("here")
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var user models.User
@@ -61,7 +65,6 @@ func Signup() gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{"error_vv": validationErr.Error()})
 			return
 		}
-		fmt.Println("i am here too")
 
 		count, err := userCollection.CountDocuments(ctx, bson.M{"email": user.Email})
 		defer cancel()
@@ -81,9 +84,9 @@ func Signup() gin.HandlerFunc {
 		}
 
 		if count > 0 {
+
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "this email or phone number already exists"})
 		}
-		fmt.Println("idhar tak aa gaya mein bc")
 
 		user.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
@@ -93,14 +96,13 @@ func Signup() gin.HandlerFunc {
 		user.Token = &token
 		user.Refresh_token = &refreshToken
 
-		fmt.Println("bkl chal gaya")
 		resultInsertionNumber, insertErr := userCollection.InsertOne(ctx, user)
 		if insertErr != nil {
+			fmt.Println("Inserted")
 			msg := fmt.Sprintf("User item was not created")
 			c.JSON(http.StatusInternalServerError, gin.H{"error_message": msg})
 			return
 		}
-		fmt.Println("bkl chal gaya pt 2")
 		defer cancel()
 		c.JSON(http.StatusOK, resultInsertionNumber)
 	}
