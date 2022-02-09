@@ -20,3 +20,14 @@ type User struct {
 	Updated_at    time.Time          `json:"updated_at"`
 	User_id       string             `json:"user_id"`
 }
+type Event struct {
+	ID         primitive.ObjectID `bson:"_id"`
+	Event_name *string            `json:"event_name" validate:"required,min=2,max=10"`
+	Date       *string            `json:"date" validate:"date,required"`
+	Location   *string            `json:"location" validate:"required,max=10,min=100"`
+	Time       *string            `json:"time"`
+	organizer  *string            `json:"organizer"`
+	Created_at time.Time          `json:"created_at"`
+	Updated_at time.Time          `json:"updated_at"`
+	User_id    string             `json:"user_id"`
+}
