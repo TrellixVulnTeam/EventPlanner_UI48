@@ -16,4 +16,5 @@ func UserRoutes(incomingRoutes *gin.Engine) {
 func EventRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.Use(middleware.Authenticate())
 	incomingRoutes.POST("/event", controller.CreateEvent())
+	incomingRoutes.GET("/event", controller.GetEvents())
 }
