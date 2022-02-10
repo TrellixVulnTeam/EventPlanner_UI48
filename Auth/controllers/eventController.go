@@ -1,12 +1,17 @@
 package controllers
 
 import (
+	"context"
 	"fmt"
+	"net/http"
+	"time"
 
 	"github.com/SimranBhagwandasani/EventPlanner/database"
+	"github.com/SimranBhagwandasani/EventPlanner/models"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -16,6 +21,34 @@ var validateEvent = validator.New()
 func CreateEvent() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fmt.Println("called Events Route")
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		var event models.Event
+
+		if err := c.BindJSON(&event); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error_aa": err.Error()})
+			return
+		}
+
+		validationErr := validateEvent.Struct(event)
+		if validationErr != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error_vv": validationErr.Error()})
+			return
+		}
+		event.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		event.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+
+		event.ID = primitive.NewObjectID()
+
+		resultInsertionNumber, insertErr := eventCollection.InsertOne(ctx, event)
+		if insertErr != nil {
+			fmt.Println("Inserted")
+			msg := fmt.Sprintf("User item was not created")
+			c.JSON(http.StatusInternalServerError, gin.H{"error_message": msg})
+			return
+		}
+
+		c.JSON(http.StatusOK, resultInsertionNumber)
+		defer cancel()
 		return
 	}
 }
@@ -32,16 +65,16 @@ func CreateEvent() gin.HandlerFunc {
 // 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 // 		var user models.User
 
-// 		if err := c.BindJSON(&user); err != nil {
-// 			c.JSON(http.StatusBadRequest, gin.H{"error_aa": err.Error()})
-// 			return
-// 		}
+// if err := c.BindJSON(&user); err != nil {
+// 	c.JSON(http.StatusBadRequest, gin.H{"error_aa": err.Error()})
+// 	return
+// }
 
-// 		validationErr := validate.Struct(user)
-// 		if validationErr != nil {
-// 			c.JSON(http.StatusBadRequest, gin.H{"error_vv": validationErr.Error()})
-// 			return
-// 		}
+// validationErr := validate.Struct(user)
+// if validationErr != nil {
+// 	c.JSON(http.StatusBadRequest, gin.H{"error_vv": validationErr.Error()})
+// 	return
+// }
 
 // 		count, err := userCollection.CountDocuments(ctx, bson.M{"email": user.Email})
 // 		defer cancel()
