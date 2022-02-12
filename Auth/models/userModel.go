@@ -29,4 +29,5 @@ type Event struct {
 	Organizer  *string            `json:"organizer"`
 	Created_at time.Time          `json:"created_at"`
 	Updated_at time.Time          `json:"updated_at"`
+	Event_id       string         `json:"event_id"`
 }

@@ -42,6 +42,7 @@ func CreateEvent() gin.HandlerFunc {
 		event.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 
 		event.ID = primitive.NewObjectID()
+		event.Event_id = event.ID.Hex()
 
 		resultInsertionNumber, insertErr := eventCollection.InsertOne(ctx, event)
 		if insertErr != nil {
