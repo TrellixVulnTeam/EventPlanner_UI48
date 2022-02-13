@@ -55,7 +55,8 @@ function Event (){
                <input onChange={(e)=>handle(e)} id = "Location" value={data.Location} placeholder= "Location" type="text" ></input >
                <input onChange={(e)=>handle(e)} id = "Time" value={data.Time} placeholder= "Time" type="text" ></input >
                <input onChange={(e)=>handle(e)} id = "Organizer" value={data.Organizer} placeholder= "Organizer" type="text" ></input >
-           </form>
+                  <button>        submit                          </button>
+                        </form>
 
 
         </div>
