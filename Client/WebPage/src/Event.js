@@ -49,13 +49,13 @@ function Event (){
     
 } return(
         <div>
-           <form onSubmit={(e)=>submit(e)}>
+           <form >
                <input onChange={(e)=>handle(e)} id = "Event_name" value={data.Event_name} placeholder= "Even_name" type="text" ></input >
                <input onChange={(e)=>handle(e)} id = "Date" value={data.Date} placeholder= "Date" type="Date" ></input >
                <input onChange={(e)=>handle(e)} id = "Location" value={data.Location} placeholder= "Location" type="text" ></input >
                <input onChange={(e)=>handle(e)} id = "Time" value={data.Time} placeholder= "Time" type="text" ></input >
                <input onChange={(e)=>handle(e)} id = "Organizer" value={data.Organizer} placeholder= "Organizer" type="text" ></input >
-                  <button>        submit                          </button>
+                  <button onSubmit={(e)=>submit(e)}>        submit                          </button>
                         </form>
 
 
