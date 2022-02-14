@@ -18,3 +18,8 @@ func EventRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.POST("/event", controller.CreateEvent())
 	incomingRoutes.GET("/event", controller.GetEvents())
 }
+
+func TicketRoutes(incomingRoutes *gin.Engine) {
+	incomingRoutes.Use(middleware.Authenticate())
+	incomingRoutes.POST("/ticket", controller.PurchaseTicket())
+}

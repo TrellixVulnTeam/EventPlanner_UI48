@@ -22,6 +22,7 @@ func main() {
 	routes.AuthRoutes(router)
 	routes.UserRoutes(router)
 	routes.EventRoutes(router)
+	routes.TicketRoutes(router)
 
 	router.Run(":" + port)
 

@@ -56,7 +56,7 @@ func Signup() gin.HandlerFunc {
 		var user models.User
 
 		if err := c.BindJSON(&user); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error_aa": err.Error()})
+			c.JSON(http.StatusBadRequest, gin.H{"error: JSON INVALID": err.Error()})
 			return
 		}
 

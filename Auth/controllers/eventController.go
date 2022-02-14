@@ -14,9 +14,10 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"strconv"
 	"log"
+	"strconv"
+
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 var eventCollection *mongo.Collection = database.OpenCollection(database.Client, "events")

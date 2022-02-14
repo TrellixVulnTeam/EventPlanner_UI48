@@ -26,8 +26,18 @@ type Event struct {
 	Date       *string            `json:"date" validate:"required"`
 	Location   *string            `json:"location" validate:"required"`
 	Time       *string            `json:"time"`
+	Price      *string            `json:"price"`
 	Organizer  *string            `json:"organizer"`
 	Created_at time.Time          `json:"created_at"`
 	Updated_at time.Time          `json:"updated_at"`
-	Event_id       string         `json:"event_id"`
+	Event_id   string             `json:"event_id"`
+}
+type Ticket struct {
+	ID         primitive.ObjectID `bson:"_id"`
+	Event_id   *string            `json:"event_id"`
+	User_id    *string            `json:"user_id"`
+	Pay_id     *string            `json:"pay_id"`
+	Created_at time.Time          `json:"created_at"`
+	Updated_at time.Time          `json:"updated_at"`
+	Ticket_id  string             `json:"ticket_id"`
 }
