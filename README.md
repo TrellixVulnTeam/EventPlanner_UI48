@@ -1,5 +1,5 @@
 # EventPlanner
-. User can Search for the events, bull tickets for the same.
+Documentation for every sprint can be found in ./Documentation directory above.
 ## Description
 ## Team Members
 1. Simran Bhagwandasani
