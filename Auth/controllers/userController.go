@@ -48,9 +48,9 @@ func Signup() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fmt.Println("Hitt")
 		c.Header("Content-Type", "application/x-www-form-urlencoded")
-		c.Header("Access-Control-Allow-Origin","*")
-		c.Header("Access-Control-Allow-Methods","POST")
-		c.Header("Access-Control-Allow-Headers","Content-Type")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "POST")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		fmt.Println("here")
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var user models.User
@@ -111,6 +111,10 @@ func Signup() gin.HandlerFunc {
 
 func Login() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		c.Header("Content-Type", "application/x-www-form-urlencoded")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "POST")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var user models.User
 		var foundUser models.User
@@ -151,6 +155,10 @@ func Login() gin.HandlerFunc {
 
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		c.Header("Content-Type", "application/x-www-form-urlencoded")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "POST")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		if err := helper.CheckUserType(c, "ADMIN"); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
@@ -195,6 +203,10 @@ func GetUsers() gin.HandlerFunc {
 
 func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		c.Header("Content-Type", "application/x-www-form-urlencoded")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "POST")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		userId := c.Param("user_id")
 
 		if err := helper.MatchUserTypeToUid(c, userId); err != nil {
