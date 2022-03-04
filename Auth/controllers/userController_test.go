@@ -9,7 +9,12 @@ import (
 func loginTest(t *testing.T){
 	fmt.Println("working")
 	var persons = Login()
-	
+	var jsonStr = []byte(` "First_name":"Rahul",
+    "Last_name":"Bhatia",
+    "Password":"rahul123",
+    "Email":"rahul@gmail.com",
+    "Phone":"3528883876",
+    "User_type":"ADMIN"`)
 	expected := []byte(
 		`{
 			"ID": "61fde499a3d1ffd7dabe1d34",
@@ -66,9 +71,16 @@ func SignupTest(t *testing.T){
 			status, http.StatusOK)
 	}
 
-	expected := `{"message":"Success"}`
+	expected := `{"InsertedID": "6222153767512ee775a7e074"}`
 	if strings.Contains(rr.Body.String(), expected) {
 	} else {
 		t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
 	}
+	req, err := http.NewRequest("POST", "/signup", bytes.NewBuffer(jsonStr))
+	handler.ServeHTTP(rr, req)
+	expected = `{"error": "this email or phone number already exists"}`
+	if strings.Contains(rr.Body.String(), expected) {
+		} else {
+			t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
+		}
 }
