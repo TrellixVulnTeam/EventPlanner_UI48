@@ -155,10 +155,6 @@ func Login() gin.HandlerFunc {
 
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Header("Content-Type", "application/x-www-form-urlencoded")
-		c.Header("Access-Control-Allow-Origin", "*")
-		c.Header("Access-Control-Allow-Methods", "POST")
-		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		if err := helper.CheckUserType(c, "ADMIN"); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
@@ -203,10 +199,6 @@ func GetUsers() gin.HandlerFunc {
 
 func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Header("Content-Type", "application/x-www-form-urlencoded")
-		c.Header("Access-Control-Allow-Origin", "*")
-		c.Header("Access-Control-Allow-Methods", "POST")
-		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		userId := c.Param("user_id")
 
 		if err := helper.MatchUserTypeToUid(c, userId); err != nil {
