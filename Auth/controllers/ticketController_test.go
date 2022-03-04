@@ -6,7 +6,6 @@ import (
 )
 
 func PurchaseTicket(t *testing.T){
-	var ticket = PurchaseTicket()
 	
 	jsonStr := []byte(
 		`{
@@ -17,17 +16,19 @@ func PurchaseTicket(t *testing.T){
 	expectedSuccess := `{
 		"InsertedID": "6222188367512ee775a7e076"
 	}`
-	expectedError := `{
+	expectedError1 := `{
 			"error": "token contains an invalid number of segments"
 		}
 		`
+	expectedError2 := `{
+			"error": "Tickets sold out."
+		}`
 		eq, err := http.NewRequest("POST", "/ticket", bytes.NewBuffer(jsonStr))
 		if err != nil {
 			t.Fatal(err)
 		}
 		req.Header.Set("Content-Type", "application/json")
 		rr := httptest.NewRecorder()
-		handler := http.HandlerFunc(LoginHandler)
 		handler.ServeHTTP(rr, req)
 		if status := rr.Code; status != http.StatusOK {
 			t.Errorf("handler returned wrong status code: got %v want %v",
@@ -37,4 +38,16 @@ func PurchaseTicket(t *testing.T){
 		} else {
 			t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
 		}
+		rr := httptest.NewRecorder()
+		handler.ServeHTTP(rr, req)
+		if strings.Contains(rr.Body.String(), expectedError1) {
+			} else {
+				t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
+			}
+			rr := httptest.NewRecorder()
+			handler.ServeHTTP(rr, req)
+			if strings.Contains(rr.Body.String(), expectedError2) {
+				} else {
+					t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
+				}
 }
