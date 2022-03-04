@@ -50,7 +50,7 @@ import { FormControl } from '@mui/material';
 
 
                 if(response.data.token){
-                    alert("loggedy in successfull")
+                    alert("logged in successfull")
                 }
 
                 localStorage.setItem('token', response.data.token);
