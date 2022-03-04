@@ -61,7 +61,7 @@ import { FormControl } from '@mui/material';
 				console.log(response.data.token)
 			})
 			.catch(error => {
-				console.log(error)
+				
 			})
             this.setState({
                 
@@ -86,8 +86,8 @@ import { FormControl } from '@mui/material';
                     <Avatar style={avatarStyle}>
                         hh
                     </Avatar>
-                    <h2 style={headerStyle}>Sign Up</h2>
-                    <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
+                    <h2 style={headerStyle}>Login</h2>
+                    <Typography variant='caption' gutterBottom>Please Login here</Typography>
                 </Grid>
                 <form onSubmit={this.submitHandler}>
                   
@@ -106,7 +106,7 @@ import { FormControl } from '@mui/material';
 							value={	User_type}
 							onChange={this.changeHandler}/> */}
                    
-                    <Button type='submit' variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}}>Sign up</Button>
+                    <Button type='submit' variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}}>Login</Button>
                 </form>
             </Paper>
         </Grid>
