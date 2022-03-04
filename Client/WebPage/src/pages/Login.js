@@ -48,9 +48,15 @@ import { FormControl } from '@mui/material';
 			})
 			.then(response => {
 
-                localStorage.setItem('token', response.data.token);
 
-           
+                if(response.data.token){
+                    alert("loggedy in successfull")
+                }
+
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('token1', response.data.user_id);
+
+                console.log(response.data.user_id)
 
 				console.log(response.data.token)
 			})
