@@ -9,11 +9,12 @@ import "../styles/Home.css";
 
 export default class Home extends Component{
 
-    // state = {
-    //    persons: [],
-    //   }
+    state = {
+       persons: [ ]
+      }
+    
 
-      
+       
     // let auth =  localStorage.getItem('user_token');
     // return fetch(url, {
     //  method: 'GET',
@@ -25,34 +26,34 @@ export default class Home extends Component{
     // constructor(){
     //     super()
     // }
-    componentDidMount(){
+    // componentDidMount(){
 
 
-        var url = 'http://localhost:9000/users/' + localStorage.getItem('token1');
-        // var url = 'http://localhost:9000/event';
+    //     var url = 'http://localhost:9000/users/' + localStorage.getItem('token1');
+    //     // var url = 'http://localhost:9000/event';
         
         
-         axios.get(url, {
-            headers :{
-              'Content-Type' : 'application/x-www-form-urlencoded',
-              Accept: 'application/json',
-               'Content-Type': 'application/json',
+    //      axios.get(url, {
+    //         headers :{
+    //           'Content-Type' : 'application/x-www-form-urlencoded',
+    //           Accept: 'application/json',
+    //            'Content-Type': 'application/json',
               
 
 
 
-              token : localStorage.getItem('token'),
+    //           token : localStorage.getItem('token'),
   
-            }}).then(
+    //         }}).then(
 
-               res =>{
-                    console.log(res);
-               },
-               err => {
-                   console.log(err)
-               }
-        )
-    }
+    //            res =>{
+    //                 console.log(res);
+    //            },
+    //            err => {
+    //                console.log(err)
+    //            }
+    //     )
+    // }
 
     
     componentDidMount(){
@@ -75,28 +76,39 @@ export default class Home extends Component{
 
                res =>{
 
-                // this.setState({ persons: res.date });
-                    console.log(res.data);
+               this.setState({ persons: res.data.user_items });
+                  
+                    // var atom = res.data.user_items;
+
+                    // console.log(atom);
+
+
+
+                    
                },
                err => {
-                   console.log(err)
+                   //console.log(err)
                }
         )
     }
 
       render(){
-       
-         return(
-        <div className= "home" style={{background: `url(${BannerImage})`}}>
-            
-                 
-                      {/* {   this.state.persons
-                             .map(person =>
-                                 <h2 key={person.id}>{person.date}</h2>
-                             )
-                    
-                             } */}
 
+        console.log(this.state.persons )
+        if(this.state.persons.length !=0 ){
+            return(  <div className= "home" style={{background: `url(${BannerImage})`}}>Hi  {   this.state.persons
+                .map(person =>
+                    <h4 key={person._id}>{person.date} {person.event_name} {person.location}</h4>
+                )
+       
+                } </div>)
+
+               }
+  
+       
+     return(
+        <div className= "home" style={{background: `url(${BannerImage})`}}>
+             
 
             <div className="headerContainer">
                 <h1>Travel</h1>
