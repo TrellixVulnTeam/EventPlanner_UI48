@@ -11,7 +11,7 @@ describe("renders the home page", () => {
     {
         cy.visit("/")
         cy.get('#signup').should('contain.text', 'SignUp');    
-        cy.get('button').should('contain','Button')
+//         cy.get('button').should('contain','Button')
          });
 
     it("renders correctly", () => {
