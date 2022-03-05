@@ -29,8 +29,8 @@ function Navbar() {
             <Link to ="/event">Events </Link>
             <Link to ="/about">About</Link>
             <Link to ="/contact">Contact</Link>
-            <Link to ="/Login">Login</Link>
-            <Link to ="/Signup">SignUp</Link>
+            <Link id="login" to ="/Login">Login</Link>
+            <Link id="signup" to ="/Signup">SignUp</Link>
             <button onClick={toggleNavbar}>
                 <ReorderIcon/>
             </button>
