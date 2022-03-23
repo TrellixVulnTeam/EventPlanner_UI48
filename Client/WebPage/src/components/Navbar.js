@@ -30,7 +30,7 @@ function Navbar() {
             <Link to ="/about">About</Link>
             <Link to ="/contact">Contact</Link>
             <Link id="login" to ="/Login">Login</Link>
-            <Link id="signup" to ="/Signup">SignUp</Link>
+           
             <button onClick={toggleNavbar}>
                 <ReorderIcon/>
             </button>

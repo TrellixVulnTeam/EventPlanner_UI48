@@ -20,8 +20,6 @@ function Event (){
     })
 
     function handle(e){
-
-
         const newdata = {...data}
         newdata[e.target.id] = e.target.value
         setData(newdata)
@@ -44,10 +42,7 @@ function Event (){
                 console.log(res.data);
 
               })
-
-
-    
-} return(
+      } return(
         <div>
            <form >
                <input onChange={(e)=>handle(e)} id = "Event_name" value={data.Event_name} placeholder= "Even_name" type="text" ></input >

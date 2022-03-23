@@ -107,6 +107,7 @@ import { FormControl } from '@mui/material';
 							onChange={this.changeHandler}/> */}
                    
                     <Button type='submit' variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}}>Login</Button>
+					<Button id="signup" variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}} to ="/Signup">SignUp</Button>
                 </form>
             </Paper>
         </Grid>
