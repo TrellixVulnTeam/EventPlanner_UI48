@@ -1,4 +1,6 @@
 # Sofware Engineering : Sprint 1
+- BackEnd : Rahul Bhatia, Simran Bhagwandasani
+- FrontEnd : Diksha Verma, Jenil Jain
 
 ## User Scenarios (covered)
 - Authentication
