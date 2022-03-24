@@ -1,4 +1,6 @@
 # Sofware Engineering : Sprint 2
+- Back End : Rahul Bhatia , Simran Bhagwandasani
+- Front End : Jenil Jain, Diksha Verma
 
 ## User Scenarios (covered)
 - EventRegistration
