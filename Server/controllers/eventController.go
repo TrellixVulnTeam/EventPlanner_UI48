@@ -2,8 +2,10 @@ package controllers
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/SimranBhagwandasani/EventPlanner/database"
@@ -26,9 +28,9 @@ var validateEvent = validator.New()
 func CreateEvent() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Header("Content-Type", "application/x-www-form-urlencoded")
-		c.Header("Access-Control-Allow-Origin","*")
-		c.Header("Access-Control-Allow-Methods","POST")
-		c.Header("Access-Control-Allow-Headers","Content-Type")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "POST")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		fmt.Println("called Events Route")
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var event models.Event
@@ -62,10 +64,22 @@ func CreateEvent() gin.HandlerFunc {
 		return
 	}
 }
+
+type weatherData struct {
+	Name string `json:"name`
+	Main struct {
+		Kelvin float64 `json:"temp"`
+	} `json:"main"`
+	Wind struct {
+		Kelvin float64 `json:"speed"`
+	} `json:"wind"`
+}
+
 func GetEvents() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
-
+		weather, err := GetWeather()
+		fmt.Println(weather)
 		recordPerPage, err := strconv.Atoi(c.Query("recordPerPage"))
 		if err != nil || recordPerPage < 1 {
 			recordPerPage = 10
@@ -98,6 +112,24 @@ func GetEvents() gin.HandlerFunc {
 		if err = result.All(ctx, &allusers); err != nil {
 			log.Fatal(err)
 		}
-		c.JSON(http.StatusOK, allusers[0])
+		temp, err := bson.Marshal(weather)
+		fmt.Print(temp)
+		c.JSON(http.StatusOK, allusers)
 	}
+}
+
+func GetWeather() (weatherData, error) {
+	apiConfig := os.Getenv("API_CONFIG")
+	resp, err := http.Get("http://api.openweathermap.org/data/2.5/weather?APPID=" + apiConfig + "&q=gainesville")
+	if err != nil {
+		return weatherData{}, err
+	}
+	defer resp.Body.Close()
+
+	var d weatherData
+	if err := json.NewDecoder(resp.Body).Decode(&d); err != nil {
+		return weatherData{}, err
+	}
+	return d, nil
+
 }
