@@ -6,15 +6,77 @@ import BannerImage from "../assets/image.jpeg";
 import "../styles/Home.css";
 
 
-
 export default class Home extends Component{
 
     state = {
        persons: [ ]
       }
     
+    componentDidMount(){
+        var url1 = 'http://localhost:9000/event';
+        
+         axios.get(url1, {
+            headers :{
+              'Content-Type' : 'application/x-www-form-urlencoded',
+              Accept: 'application/json',
+               'Content-Type': 'application/json',
+              token : localStorage.getItem('token'),
+  
+            }}).then(
 
+               res =>{
+
+               this.setState({ persons: res.data.user_items });
+                  
+                    // var atom = res.data.user_items;
+                    // console.log(atom);             
+               },
+               err => {
+                   //console.log(err)
+               }
+        )
+    }
+
+      render(){
+
+        console.log(this.state.persons )
+        if(this.state.persons.length !=0 ){
+            return(  <div className= "home" style={{background: `url(${BannerImage})`}}> {   this.state.persons
+                .map(person =>
+                    <h4 key={person._id}>{person.date} {person.event_name} {person.location}</h4>
+                )
        
+                } </div>)
+
+               }
+
+               
+       
+     return(
+        <div className= "home" style={
+            {backgroundImage: `url(${BannerImage})`,
+             backgroundPosition: "center",
+             backgroundRepeat: "no-repeat",
+             width: "100vw",
+             heigth: "100vh"
+            }}>
+             
+
+            <div className="headerContainer">
+                <h1>Travel</h1>
+               
+                <p>Travel anywhere you want</p>
+                <Link to ="/Plan">
+                <button> Plan now</button>
+                </Link> 
+            </div>
+        </div>
+
+        
+    );
+}
+}
+     
     // let auth =  localStorage.getItem('user_token');
     // return fetch(url, {
     //  method: 'GET',
@@ -54,73 +116,3 @@ export default class Home extends Component{
     //            }
     //     )
     // }
-
-    
-    componentDidMount(){
-
-
-        var url1 = 'http://localhost:9000/event';
-        
-         axios.get(url1, {
-            headers :{
-              'Content-Type' : 'application/x-www-form-urlencoded',
-              Accept: 'application/json',
-               'Content-Type': 'application/json',
-              
-
-
-
-              token : localStorage.getItem('token'),
-  
-            }}).then(
-
-               res =>{
-
-               this.setState({ persons: res.data.user_items });
-                  
-                    // var atom = res.data.user_items;
-
-                    // console.log(atom);
-
-
-
-                    
-               },
-               err => {
-                   //console.log(err)
-               }
-        )
-    }
-
-      render(){
-
-        console.log(this.state.persons )
-        if(this.state.persons.length !=0 ){
-            return(  <div className= "home" style={{background: `url(${BannerImage})`}}>Hi  {   this.state.persons
-                .map(person =>
-                    <h4 key={person._id}>{person.date} {person.event_name} {person.location}</h4>
-                )
-       
-                } </div>)
-
-               }
-  
-       
-     return(
-        <div className= "home" style={{background: `url(${BannerImage})`}}>
-             
-
-            <div className="headerContainer">
-                <h1>Travel</h1>
-               
-                <p>Travel anywhere you want</p>
-                <Link to ="/Plan">
-                <button> Plan now</button>
-                </Link> 
-            </div>
-        </div>
-
-        
-    );
-}
-}
