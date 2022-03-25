@@ -63,13 +63,13 @@ export default class Home extends Component{
              
 
             <div className="headerContainer">
-                <h1>Travel</h1>
-               
-                <p>Travel anywhere you want</p>
-                <Link to ="/Plan">
-                <button> Plan now</button>
-                </Link> 
-            </div>
+                    <h1>Plan</h1>
+                
+                    <p>Plan new Events or Discover something more!</p>
+                    <Link to ="/Plan">
+                    <button>Discover !</button>
+                    </Link> 
+                </div>
         </div>
 
         
