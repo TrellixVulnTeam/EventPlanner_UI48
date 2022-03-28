@@ -24,6 +24,7 @@ func main() {
 	routes.EventRoutes(router)
 	routes.TicketRoutes(router)
 	routes.HomeRoutes(router)
+	routes.Notifications(router)
 
 	router.Run(":" + port)
 
