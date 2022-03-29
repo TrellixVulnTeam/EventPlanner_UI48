@@ -150,7 +150,7 @@ func Login() gin.HandlerFunc {
 			return
 		}
 		err = ActiveUser(foundUser.User_id,*foundUser.Email)
-		if err != nil {
+		if err == nil {
 			c.Redirect(http.StatusMovedPermanently, "/home")
 			return
 		}

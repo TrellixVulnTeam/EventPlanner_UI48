@@ -34,7 +34,7 @@ func Connect() {
 	CheckError(e)
 	
 }
-func ActiveUser(user_id string,email string) error {
+func ActiveUser (user_id string,email string) error {
 	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	
 	db, err := sql.Open("postgres", psqlconn)
@@ -44,13 +44,39 @@ func ActiveUser(user_id string,email string) error {
 	if e != nil{
 		return (e)
 	}
-
 	defer db.Close()
 	return nil
-
-	
 }
+type ActiveUserStruct struct {
+    user_id   string 
+    email string 
+}
+func Sale() {
+	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+	
+	db, err := sql.Open("postgres", psqlconn)
+	CheckError(err)
+	selectStmt := `select * from "users"`
+	rows, err := db.Query(selectStmt)
+	CheckError(err)
 
+	var users []ActiveUserStruct
+
+	for rows.Next() {
+        var user_id string
+        var email string
+
+        err = rows.Scan(&user_id, &email)
+
+        // check errors
+        CheckError(err)
+
+        users = append(users, ActiveUserStruct{user_id: user_id, email: email})
+    }
+
+	fmt.Println(users)
+
+}
 func PushNotifs() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
@@ -59,5 +85,6 @@ func PushNotifs() gin.HandlerFunc {
 		fmt.Println("wait for trigger")
 		//Connect()
 		//ActiveUser("623ca31d6bb00181139c4f70","rahul123@gmail.com")
+		Sale()
 	}
 }
