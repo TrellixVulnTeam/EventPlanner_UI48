@@ -149,6 +149,11 @@ func Login() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
+		err = ActiveUser(foundUser.User_id,*foundUser.Email)
+		if err != nil {
+			c.Redirect(http.StatusMovedPermanently, "/home")
+			return
+		}
 		c.JSON(http.StatusOK, foundUser)
 	}
 }
