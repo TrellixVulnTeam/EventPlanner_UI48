@@ -55,15 +55,9 @@ type ActiveUserStruct struct {
 func Sale() {
 	mailer := gomail.NewMessage()
 	mailer.SetHeader("From","setripplannergolang@gmail.com")
-	mailer.SetHeader("To","rahul.1517.bhatia@gmail.com")
 	mailer.SetHeader("Subject","Hurray! ENjoy 20% off")
 	mailer.SetBody("text/plain","Take an Extra 20% off, just because you visited happy hours.")
-
 	m := gomail.NewDialer("smtp.gmail.com",587,"setripplannergolang@gmail.com","setripgolang")
-	if err := m.DialAndSend(mailer); err!= nil {
-		fmt.Println(err)
-		panic(err)
-	}
 
 	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	
