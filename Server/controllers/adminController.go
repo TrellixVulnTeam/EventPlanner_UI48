@@ -66,7 +66,6 @@ func Sale() {
 	selectStmt := `select * from "users"`
 	rows, err := db.Query(selectStmt)
 	CheckError(err)
-
 	var users []ActiveUserStruct
 
 	for rows.Next() {
@@ -91,17 +90,21 @@ func Sale() {
 
 
 }
-func welcome(email string){
-
+func Welcome(email string){
+	mailer := gomail.NewMessage()
+	mailer.SetHeader("From","setripplannergolang@gmail.com")
+	mailer.SetHeader("Subject","You are all set!")
+	mailer.SetBody("text/plain","Welcome to the worlds best tripplanner.")
+	m := gomail.NewDialer("smtp.gmail.com",587,"setripplannergolang@gmail.com","setripgolang")
+	mailer.SetHeader("To",email)
+		if err := m.DialAndSend(mailer); err!= nil {
+			fmt.Println(err)
+			panic(err)
+		}
 }
 func PushNotifs() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
-
-		fmt.Println("Log Active users")
-		fmt.Println("wait for trigger")
-		//Connect()
-		//ActiveUser("623ca31d6bb00181139c4f70","rahul123@gmail.com")
 		Sale()
 	}
 }

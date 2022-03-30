@@ -104,6 +104,7 @@ func Signup() gin.HandlerFunc {
 			return
 		}
 		defer cancel()
+		Welcome(*user.Email)
 		c.JSON(http.StatusOK, resultInsertionNumber)
 	}
 
