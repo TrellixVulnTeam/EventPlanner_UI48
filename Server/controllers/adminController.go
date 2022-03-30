@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "github.com/lib/pq"
 	"github.com/gin-gonic/gin"
+	gomail "gopkg.in/mail.v2"
 )
 
 const (
@@ -52,6 +53,18 @@ type ActiveUserStruct struct {
     email string 
 }
 func Sale() {
+	mailer := gomail.NewMessage()
+	mailer.SetHeader("From","setripplannergolang@gmail.com")
+	mailer.SetHeader("To","rahul.1517.bhatia@gmail.com")
+	mailer.SetHeader("Subject","Hurray! ENjoy 20% off")
+	mailer.SetBody("text/plain","Take an Extra 20% off, just because you visited happy hours.")
+
+	m := gomail.NewDialer("smtp.gmail.com",587,"setripplannergolang@gmail.com","setripgolang")
+	if err := m.DialAndSend(mailer); err!= nil {
+		fmt.Println(err)
+		panic(err)
+	}
+
 	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	
 	db, err := sql.Open("postgres", psqlconn)
@@ -72,9 +85,19 @@ func Sale() {
         CheckError(err)
 
         users = append(users, ActiveUserStruct{user_id: user_id, email: email})
+		mailer.SetHeader("To",email)
+		if err := m.DialAndSend(mailer); err!= nil {
+			fmt.Println(err)
+			panic(err)
+		}
+
     }
 
 	fmt.Println(users)
+
+
+}
+func welcome(email string){
 
 }
 func PushNotifs() gin.HandlerFunc {
