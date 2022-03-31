@@ -2,7 +2,10 @@ package controllers
 
 import (
 	"context"
+	"image"
+	"os"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -11,6 +14,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 
+	"github.com/skip2/go-qrcode"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -21,9 +25,9 @@ var validateTicket = validator.New()
 func PurchaseTicket() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Header("Content-Type", "application/x-www-form-urlencoded")
-		c.Header("Access-Control-Allow-Origin","*")
-		c.Header("Access-Control-Allow-Methods","POST")
-		c.Header("Access-Control-Allow-Headers","Content-Type")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "POST")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		fmt.Println("called purchase ticket")
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var ticket models.Ticket
@@ -52,8 +56,25 @@ func PurchaseTicket() gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusOK, resultInsertionNumber)
+		newQr := "./static/"+ticket.Ticket_id + ".png"
+		content := ticket.Ticket_id + "\n" + *ticket.Event_id
+		err := qrcode.WriteFile(string(content), qrcode.Medium, 512, newQr)
+		if err != nil {
+			log.Fatal(err)
+		}
+		//c.Static("/image","./static")
+		f, err := os.Open(newQr)
+		image, _, err := image.Decode(f)
+		c.JSON(http.StatusOK, gin.H{
+			"image" : image,
+			"data" : resultInsertionNumber})
 		defer cancel()
 		return
 	}
 }
+func GetTicket() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+	}
+}
+

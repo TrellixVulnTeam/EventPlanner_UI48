@@ -150,10 +150,9 @@ func Login() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
-		err = ActiveUser(foundUser.User_id,*foundUser.Email)
-		if err == nil {
-			c.Redirect(http.StatusMovedPermanently, "/home")
-			return
+		err = ActiveUser(foundUser.User_id, *foundUser.Email)
+		if err != nil {
+			fmt.Println("User logged in already!")
 		}
 		c.JSON(http.StatusOK, foundUser)
 	}
