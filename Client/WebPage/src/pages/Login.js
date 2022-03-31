@@ -121,10 +121,7 @@ import { Link } from 'react-router-dom';
 		    <a href="http://localhost:3000/Signup">
 			<Button id="signup" variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}} to ="/Signup">SignUp</Button>
 		    </a>
-			<p>
-				<Link to={'/forgot'} style={{marginTop: "15px",marginLeft:"150px"}}>Forgot password?</Link>
-
-			</p>
+			
                 </form>
             </Paper>
         </Grid>
