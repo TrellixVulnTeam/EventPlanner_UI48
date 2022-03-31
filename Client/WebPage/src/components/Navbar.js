@@ -1,42 +1,103 @@
-import React, {useState} from 'react';
+import React,{Component}from 'react';
 import Logo from "../assets/Logo.jpeg";
 import {Link} from "react-router-dom";
 import '../styles/Navbar.css';
 import ReorderIcon from'@material-ui/icons/Reorder';
+import axios from 'axios';
 
-function Navbar() {
+export default class Navbar extends Component {
 
-    const [openLinks, setOpenLinks] = useState(false)
+    handleLogout = () => {
+        localStorage.clear();
+        console.log("here I am ");
+        this.props.setUser("");
+    }
+    constructor(props) {
+        super(props);
+      }
+      state1={
+        openLinks:false  ,
+    }
+    render(){
+
+        console.log("hello world")
+        console.log(this.props.user)
+    // const [openLinks, setOpenLinks] = useState(false)
 
     const toggleNavbar = () => {
-        setOpenLinks(!openLinks);
+        this.setState(!this.state1.openLinks);
     }
+    let buttons ; 
+
+    if(this.props.user !=""){
+      
+        buttons = (<><div className ="leftSide" id={this.state1.openLinks ? "open" : "close"}>
+        <img src ={Logo}/>
+        <div className= "hiddenLinks">
+        <Link to ="/">Home</Link>
+        <Link to ={"/event"}>Events</Link>
+        <Link to ="/about">DisplayEvent</Link>
+        <Link to ="/contact">Contact</Link>
+        <Link to ="/" >Logout</Link>
+        {/* <Link to ="/Signup">SignUp</Link> */}
+        </div>
+    </div> 
+    <div className ="rightSide">
+        <Link to ="/">Home</Link>
+        <Link to ="/event">Events </Link>
+        <Link to ="/about">DisplayEvent</Link>
+        <Link to ="/contact">Contact</Link>
+        <Link id="login" to ={"/"} onClick={()=> {
+        localStorage.clear();
+        console.log("here I am ");
+        this.props.setUser("");
+    }} >Logout</Link>
+       
+        <button onClick={toggleNavbar}>
+            <ReorderIcon/>
+        </button>
+    </div> 
+    </>    
+            
+        )
+
+    }else{
+
+        buttons = (<><div className ="leftSide" id={this.state1.openLinks ? "open" : "close"}>
+        <img src ={Logo}/>
+        <div className= "hiddenLinks">
+        <Link to ="/">Home</Link>
+        <Link to ={"/event"}>Events</Link>
+        <Link to ="/about">DisplayEvent</Link>
+        <Link to ="/contact">Contact</Link>
+        <Link to ="/Login">Login</Link>
+        <Link to ="/Signup">SignUp</Link>
+        </div>
+    </div> 
+    <div className ="rightSide">
+        <Link to ="/">Home</Link>
+        <Link to ="/event">Events </Link>
+        <Link to ="/about">DisplayEvent</Link>
+        <Link to ="/contact">Contact</Link>
+        <Link id="login" to ="/Login">Login</Link>
+       
+        <button onClick={toggleNavbar}>
+            <ReorderIcon/>
+        </button>
+    </div> 
+    </>    
+            
+        )
+
+    }
+
+  
     return (
     <div className ="navbar">
-        <div className ="leftSide" id={openLinks ? "open" : "close"}>
-            <img src ={Logo}/>
-            <div className= "hiddenLinks">
-            <Link to ="/">Home</Link>
-            <Link to ={"/event"}>Events</Link>
-            <Link to ="/about">About</Link>
-            <Link to ="/contact">Contact</Link>
-            <Link to ="/Login">Login</Link>
-            <Link to ="/Signup">SignUp</Link>
-            </div>
-        </div> 
-        <div className ="rightSide">
-            <Link to ="/">Home</Link>
-            <Link to ="/event">Events </Link>
-            <Link to ="/about">About</Link>
-            <Link to ="/contact">Contact</Link>
-            <Link id="login" to ="/Login">Login</Link>
-           
-            <button onClick={toggleNavbar}>
-                <ReorderIcon/>
-            </button>
-        </div>     
+        {buttons}
     </div>
     );
+    }
 }
     
-export default Navbar;
+// export default Navbar;
