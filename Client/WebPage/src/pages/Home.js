@@ -8,47 +8,75 @@ import "../styles/Home.css";
 
 export default class Home extends Component{
 
-    state = {
-       persons: [ ]
-      }
-    
-    componentDidMount(){
-        var url1 = 'http://localhost:9000/event';
-        
-         axios.get(url1, {
-            headers :{
-              'Content-Type' : 'application/x-www-form-urlencoded',
-              Accept: 'application/json',
-               'Content-Type': 'application/json',
-              token : localStorage.getItem('token'),
+
+   
+    // state = {
+    //    persons: [ ]
+    //   }
   
-            }}).then(
+    // componentDidMount(){
+    //     var url1 = 'http://localhost:9000/event';
+        
+    //      axios.get(url1, {
+    //         headers :{
+    //           'Content-Type' : 'application/x-www-form-urlencoded',
+    //           Accept: 'application/json',
+    //            'Content-Type': 'application/json',
+    //           token : localStorage.getItem('token'),
+  
+    //         }}).then(
 
-               res =>{
+    //            res =>{
 
-               this.setState({ persons: res.data.user_items });
+    //            this.setState({ persons: res.data.user_items });
                   
-                    // var atom = res.data.user_items;
-                    // console.log(atom);             
-               },
-               err => {
-                   //console.log(err)
-               }
-        )
-    }
+    //                 // var atom = res.data.user_items;
+    //                 // console.log(atom);             
+    //            },
+    //            err => {
+    //                //console.log(err)
+    //            }
+    //     )
+    // }
 
       render(){
 
-        console.log(this.state.persons )
-        if(this.state.persons.length !=0 ){
-            return(  <div className= "home" style={{background: `url(${BannerImage})`}}> {   this.state.persons
-                .map(person =>
-                    <h4 key={person._id}>{person.date} {person.event_name} {person.location}</h4>
-                )
-       
-                } </div>)
+        console.log("printing");
+        console.log(this.props.user);
+        if(this.props.user!="" ){
+            return (
+                <div className= "home" style={
+                    {backgroundImage: `url(${BannerImage})`,
+                     backgroundPosition: "center",
+                     backgroundRepeat: "no-repeat",
+                     width: "100vw",
+                     heigth: "100vh"
+                    }}>
+                     
+        
+                    <div className="headerContainer">
+                            <h1>Plan</h1>
+                        
+                            <p>Greetings {this.props.user.first_name} Plan new Events or Discover something more!</p>
+                            <Link to ="/Plan">
+                            <button>Discover !</button>
+                            </Link> 
+                        </div>
+                </div>
 
-               }
+            )
+        }
+
+        // console.log(this.state.persons )
+        // if(this.state.persons.length !=0 ){
+        //     return(  <div className= "home" style={{background: `url(${BannerImage})`}}> {   this.state.persons
+        //         .map(person =>
+        //             <h4 key={person._id}>{person.date} {person.event_name} {person.location}</h4>
+        //         )
+       
+        //         } </div>)
+
+        //        }
 
                
        
@@ -116,3 +144,4 @@ export default class Home extends Component{
     //            }
     //     )
     // }
+
