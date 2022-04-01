@@ -25,7 +25,7 @@ export default class DisplayEvent extends Component{
 
                res =>{
 
-               this.setState({ persons: res.data.user_items });
+               this.setState({ persons: res.data[0].user_items });
                   
                     // var atom = res.data.user_items;
                     // console.log(atom);             
