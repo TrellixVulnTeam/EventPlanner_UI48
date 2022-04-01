@@ -37,12 +37,26 @@ export default class DisplayEvent extends Component{
     }
 
     render(){
-        
+        console.log("hele")
         console.log(this.state.persons )
         if(this.state.persons.length !=0 ){
-            return(  <div className= "home" > {   this.state.persons
+            return(  <div className="container"  >  {   this.state.persons
                 .map(person =>
-                    <h4 key={person._id}>{person.date} {person.event_name} {person.location}</h4>
+                   <div className="event" key={person._id}>
+                        <div>
+                        <p>Organizer : {person.organizer}</p>
+                        <p>Time : {person.time}</p>
+                        </div>
+                        <div style={{color:"white",paddingLeft:"5px"}}>
+                        {person.date}
+                        </div>
+
+                        <div>
+                         <span>{person.event_name}</span>
+                        <h3>{person.location}</h3>
+                        </div>
+                         
+                       </div>
                 )
        
                 } </div>)
@@ -52,7 +66,7 @@ export default class DisplayEvent extends Component{
 
 
         return(
-            <><h1>Login to see Events</h1></>
+            <><h1 style={{color:"white"}}>Login to see Events</h1></>
         )
 
     }
