@@ -1,17 +1,55 @@
-import React from "react";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import "../styles/Footer.css";
-  
-function Footer(){
-    return (<div className = "footer">
-        <div className ="socialMedia">
-        <InstagramIcon /> <TwitterIcon /> <FacebookIcon /> <LinkedInIcon /> 
-        </div>
-        <p>&copy; 2021 eventplanner.com</p>
-    </div>
-    );
-}
-export default Footer;
+import styled from 'styled-components';
+
+export const Container = styled.div`
+  padding: 80px 60px;
+  background: radial-gradient(circle, rgba(92,39,251,1) 0%, rgba(112,71,247,1) 100%);
+
+  @media (max-width: 1000px) {
+    padding: 70px 30px;
+  }
+`;
+
+export const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    /* background: red; */
+`
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 60px;
+`;
+
+export const Row = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-gap: 20px;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+`;
+
+export const Link = styled.a`
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-decoration: none;
+
+  &:hover {
+      color: #ff9c00;
+      transition: 200ms ease-in;
+  }
+`;
+
+export const Title = styled.p`
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 40px;
+  font-weight: bold;
+`;
