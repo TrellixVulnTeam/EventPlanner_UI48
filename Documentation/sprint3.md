@@ -1,6 +1,6 @@
 # Sofware Engineering : Sprint 3
 - Back End : Rahul Bhatia , Simran Bhagwandasani
-
+- Front End : Jenil Jain, Diksha Verma
 ## User Scenarios (covered)
 - `Admin Role`
     - Admin can add new event.
