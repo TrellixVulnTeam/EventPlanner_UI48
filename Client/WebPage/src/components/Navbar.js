@@ -28,15 +28,54 @@ export default class Navbar extends Component {
         this.setState(!this.state1.openLinks);
     }
     let buttons ; 
+    console.log("props ARE WQAITING");
+    if(this.props.user !="" && this.props.user.user_type == "ADMIN"){
+        console.log(this.props.user.user_type);
+        buttons =(
+            buttons = (<><div className ="leftSide" id={this.state1.openLinks ? "open" : "close"}>
+            <img src ={Logo}/>
+            <div className= "hiddenLinks">
+            <Link to ="/">Home</Link>
+            <Link to ={"/event"}>Events</Link>
+            <Link to ="/about">Display Event</Link>
+            <Link to ="/contact">Contact</Link>
+            <Link to ="/" >Logout</Link>
+            {/* <Link to ="/Signup">SignUp</Link> */}
+            <Link to ="/USERS" >Users</Link>
+            <Link to ='/notifs' >Notification</Link>
+            </div>
+        </div> 
+        <div className ="rightSide">
+            <Link to ="/">Home</Link>
+            <Link to ="/event">Events </Link>
+            <Link to ="/about">Display Event</Link>
+            <Link to ="/contact">Contact</Link>
+            <Link id="login" to ={"/"} onClick={()=> {
+            localStorage.clear();
+            console.log("here I am ");
+            this.props.setUser("");
+        }} >Logout</Link>
+        <Link to ="/USERS" >Users</Link>
+        <Link to ='/notifs' >Notification</Link>
+           
+            <button onClick={toggleNavbar}>
+                <ReorderIcon/>
+            </button>
+        </div> 
+        </>    
+                
+            )
+        )
 
-    if(this.props.user !=""){
+    }
+    else if(this.props.user !=""){
       
         buttons = (<><div className ="leftSide" id={this.state1.openLinks ? "open" : "close"}>
         <img src ={Logo}/>
         <div className= "hiddenLinks">
         <Link to ="/">Home</Link>
-        <Link to ={"/event"}>Events</Link>
-        <Link to ="/about">DisplayEvent</Link>
+        {/* <Link to ={"/event"}>Events</Link> */}
+        <Link to ="/about">Display Event</Link>
         <Link to ="/contact">Contact</Link>
         <Link to ="/" >Logout</Link>
         {/* <Link to ="/Signup">SignUp</Link> */}
@@ -44,8 +83,8 @@ export default class Navbar extends Component {
     </div> 
     <div className ="rightSide">
         <Link to ="/">Home</Link>
-        <Link to ="/event">Events </Link>
-        <Link to ="/about">DisplayEvent</Link>
+        {/* <Link to ="/event">Events </Link> */}
+        <Link to ="/about">Display Event</Link>
         <Link to ="/contact">Contact</Link>
         <Link id="login" to ={"/"} onClick={()=> {
         localStorage.clear();
@@ -67,8 +106,8 @@ export default class Navbar extends Component {
         <img src ={Logo}/>
         <div className= "hiddenLinks">
         <Link to ="/">Home</Link>
-        <Link to ={"/event"}>Events</Link>
-        <Link to ="/about">DisplayEvent</Link>
+        {/* <Link to ={"/event"}>Events</Link> */}
+        <Link to ="/about">Display Event</Link>
         <Link to ="/contact">Contact</Link>
         <Link to ="/Login">Login</Link>
         <Link to ="/Signup">SignUp</Link>
@@ -76,8 +115,8 @@ export default class Navbar extends Component {
     </div> 
     <div className ="rightSide">
         <Link to ="/">Home</Link>
-        <Link to ="/event">Events </Link>
-        <Link to ="/about">DisplayEvent</Link>
+        {/* <Link to ="/event">Events </Link> */}
+        <Link to ="/about">Display Event</Link>
         <Link to ="/contact">Contact</Link>
         <Link id="login" to ="/Login">Login</Link>
        

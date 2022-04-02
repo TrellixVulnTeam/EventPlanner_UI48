@@ -7,8 +7,8 @@ import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Signup from "./pages/SignUp";
 import  DisplayEvent from "./pages/DisplayEvent";
-import  Forgot from "./pages/Forgotcomponent";
-
+import  Users from "./pages/users";
+import  Notifs from "./pages/Notifs";
 import {BrowserRouter as Router, Routes, Route} 
 from 'react-router-dom';
 import axios from 'axios'
@@ -73,6 +73,8 @@ export default class App extends Component
           <Route path ='/Login'  element={<Login setUser={this.setUser}/>}/>
           <Route path ='/Signup'  element={<Signup/>}/>
           <Route path ='/about'  element={<DisplayEvent/>}/>
+          <Route path ='/USERS'  element={<Users/>}/>
+          <Route path ='/notifs'  element={<Notifs/>}/>
           {/* <Route path ='/forgot'  element={<Forgot/>}/> */}
       </Routes>
       </Router>  
@@ -83,3 +85,5 @@ export default class App extends Component
   );
    }
 }
+
+// export default App;
