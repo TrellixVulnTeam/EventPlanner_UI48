@@ -58,7 +58,7 @@ export default class Home extends Component{
                             <h1>Plan</h1>
                         
                             <p>Greetings {this.props.user.first_name} Plan new Events or Discover something more!</p>
-                            <Link to ="/Plan">
+                            <Link to ="/about">
                             <button>Discover !</button>
                             </Link> 
                         </div>
@@ -94,7 +94,7 @@ export default class Home extends Component{
                     <h1>Plan</h1>
                 
                     <p>Plan new Events or Discover something more!</p>
-                    <Link to ="/Plan">
+                    <Link to ="/about">
                     <button>Discover !</button>
                     </Link> 
                 </div>
@@ -144,4 +144,3 @@ export default class Home extends Component{
     //            }
     //     )
     // }
-
