@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/stripe/stripe-go/v72"
   "github.com/stripe/stripe-go/v72/price"
+  "github.com/stripe/stripe-go/v72/product"
 	"github.com/stripe/stripe-go/v72/checkout/session"
 )
 
@@ -14,10 +15,17 @@ func CreateCheckoutSession() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		stripe.Key = "sk_test_51Ko7SIBldx1WlAU0CepzRr8Ka4TN9tZ87K3nfaUxvX8wbJVW3TwBj7nBKJPv20rPrlAUyvjkW95J474XYBYQKNRa00kjYL8SWB"
 		domain := "http://localhost:9000"
+
+    productParams := &stripe.ProductParams{
+      Name: stripe.String("gatornights"),
+      Description : stripe.String("navigators @ 10:10pm"),
+    }
+    product, _ := product.New(productParams)
+
     priceParams := &stripe.PriceParams{
       Currency : stripe.String(string(stripe.CurrencyUSD)),
-      unitAmount: stripe.Int64(10),
-      product: stripe.String("prod_LV8PWWYl9PM1FF")
+      UnitAmount: stripe.Int64(2000),
+      Product: stripe.String(string(product.ID)),
     }
     p, _ := price.New(priceParams)
 
@@ -25,9 +33,7 @@ func CreateCheckoutSession() gin.HandlerFunc {
 			LineItems: []*stripe.CheckoutSessionLineItemParams{
 				&stripe.CheckoutSessionLineItemParams{
 					// Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-          PriceData: 
-					Amount:    stripe.Int64(10),
-          Currency: stripe.String(string(stripe.CurrencyUSD))
+          Price: stripe.String(string(p.ID)),
 					Quantity: stripe.Int64(1),
 				},
 			},
@@ -37,6 +43,7 @@ func CreateCheckoutSession() gin.HandlerFunc {
 		}
 
 		s, err := session.New(params)
+    log.Printf("Status :%v",s.Status)
 		c.JSON(http.StatusOK, gin.H{
 			"data": s.URL})
 
