@@ -13,3 +13,7 @@ func AuthRoutes(incomingRoutes *gin.Engine) {
 func Notifications(incomingRoutes *gin.Engine) {
 	incomingRoutes.POST("admin/notifs", controller.PushNotifs())
 }
+
+func Payment(incomingRoutes *gin.Engine) {
+	incomingRoutes.POST("/payment", controller.CreateCheckoutSession())
+}
