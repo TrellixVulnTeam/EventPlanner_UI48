@@ -2,7 +2,7 @@ import axios from "axios";
 import React , {Component}from "react";
 
 import { Grid, Paper, Avatar, Typography, TextField, Button } from '@mui/material'
-import { Label } from "reactstrap";
+// import { Label } from "reactstrap";
 
 
 
@@ -71,7 +71,7 @@ export default class Notifs extends Component  {
     return(
 
                     <div >
-                        <Label style={{color:"white"}}>Select type of event :   </Label>
+                        <h3 style={{color:"white"}}>Select type of event :   </h3>
                         <select value={this.state.type} onChange={(e) =>{
                              
                              this.setState({ type:  e.target.value });
