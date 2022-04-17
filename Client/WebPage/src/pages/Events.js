@@ -43,8 +43,10 @@ import { FormControl } from '@mui/material';
 		axios
 			.post('http://localhost:9000/event ', this.state,{
 				headers :{
-				  'Content-Type' : 'application/x-www-form-urlencoded',
-                  token : localStorage.getItem('token')
+					'Content-Type' : 'application/x-www-form-urlencoded',
+					Accept: 'application/json',
+					 'Content-Type': 'application/json',
+					token : localStorage.getItem('token'),
 				}
 			})
 			.then(response => {
@@ -61,7 +63,7 @@ import { FormControl } from '@mui/material';
                 Location:'',
                 Time:'',
                 Organizer: '',
-                
+                Price:","
 			
             });
 	}
@@ -69,7 +71,7 @@ import { FormControl } from '@mui/material';
    const paperStyle = { padding: '30px 20px', width: 300, margin: "20px auto" }
     const headerStyle = { margin: 0 }
     const avatarStyle = { backgroundColor: '#1bbd7e' }
-    const { Event_name,Date,Location,Time, Organizer} = this.state;
+    const { Event_name,Date,Location,Time, Organizer,Price} = this.state;
     return (
         <Grid>
             <Paper elevation={20} style={paperStyle}>
@@ -102,6 +104,11 @@ import { FormControl } from '@mui/material';
 							name="Organizer"
 							value={	Organizer}
 							onChange={this.changeHandler}/>
+					<TextField fullWidth label='Price' placeholder="Enter your Price" type="number"
+							name="Price"
+							value={	Price }
+							onChange={this.changeHandler}/>
+              
               
                    
                    
