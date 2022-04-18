@@ -61,7 +61,7 @@ export default class DisplayEvent extends Component{
         console.log(this.state)
        
      
-		axios.post('/payment ',{quantity:this.state.quantity,
+		axios.post('http://localhost:9000/payment ',{quantity:this.state.quantity,
         user_id:this.state.user_id,event_id:this.state.event_id},{
 				headers :{
 				  'Content-Type' : 'application/x-www-form-urlencoded',
