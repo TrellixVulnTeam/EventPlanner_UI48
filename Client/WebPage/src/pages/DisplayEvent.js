@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import {Link} from "react-router-dom";
 import BannerImage from "../assets/image.jpeg";
 import "../styles/Home.css";
-// import download from 'C:/Users/Dell/Desktop/testing/EventPlanner/Client/WebPage/src/assests/download.jpg';
-// import gatornights from 'C:/Users/Dell/Desktop/testing/EventPlanner/Client/WebPage/src/assests/gatornights.jpg';
-import image2 from 'C:/Users/Dell/Desktop/testing/EventPlanner/Client/WebPage/src/assests/image2.jpg';
+// import download from '../assests/download.jpg';
+// import gatornights from '../assests/gatornights.jpg';
+import image2 from '../assests/image2.jpg';
 // import { Navigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { Grid, Paper, Avatar, Typography, TextField, Button } from '@mui/material'
@@ -154,7 +154,7 @@ export default class DisplayEvent extends Component{
                             <span>{person.event_name} 
                             <br/>Date: {person.date}</span>
                             <h3>{person.location}</h3>
-                             <span> <h3>Price : {person.price} $ </h3> </span>
+                             <span> <h3>Price : ${person.price}</h3> </span>
                            
                             <button   onClick={ 
                                 
