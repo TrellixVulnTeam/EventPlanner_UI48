@@ -23,7 +23,7 @@ import { FormControl } from '@mui/material';
 			Location:'',
 			Time:'',
 			Organizer: '',
-			
+			Price:'',
 			
 			
 		}
@@ -41,7 +41,7 @@ import { FormControl } from '@mui/material';
 		
 		
 		axios
-			.post('http://localhost:9000/event ', this.state,{
+			.post('/event ', this.state,{
 				headers :{
 					'Content-Type' : 'application/x-www-form-urlencoded',
 					Accept: 'application/json',
@@ -63,7 +63,7 @@ import { FormControl } from '@mui/material';
                 Location:'',
                 Time:'',
                 Organizer: '',
-                Price:","
+                Price:"",
 			
             });
 	}
