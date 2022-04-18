@@ -167,7 +167,7 @@ export default class DisplayEvent extends Component{
                              }
                              >  BUY Tickets  </button>
                              <form onSubmit={this.submitHandler}>
-                                <input fullWidth label='quantity' placeholder="Enter your quantity" type='text' 
+                                <input className="form-field" fullWidth label='quantity' placeholder="Enter your quantity" type='text' 
 							name="quantity" 
 							onChange={this.changeHandler} />
                             </form>
