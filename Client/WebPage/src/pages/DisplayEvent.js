@@ -15,7 +15,7 @@ export default class DisplayEvent extends Component{
         super();
         this.state = {
             persons: [ ],
-             quantity: "",
+             quantity: "1",
              user_id: "",
              event_id: "",
              linksf:"",
