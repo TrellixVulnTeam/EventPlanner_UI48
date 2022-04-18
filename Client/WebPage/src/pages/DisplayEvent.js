@@ -154,7 +154,7 @@ export default class DisplayEvent extends Component{
                             <span>{person.event_name} 
                             <br/>Date: {person.date}</span>
                             <h3>{person.location}</h3>
-
+                             <span> <h3>Price : {person.price} $ </h3> </span>
                            
                             <button   onClick={ 
                                 
