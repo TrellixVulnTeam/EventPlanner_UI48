@@ -72,7 +72,7 @@ export default class App extends Component
           <Route path ='/event' element={<Events/>}/>
           <Route path ='/Login'  element={<Login setUser={this.setUser}/>}/>
           <Route path ='/Signup'  element={<Signup/>}/>
-          <Route path ='/about'  element={<DisplayEvent/>}/>
+          <Route path ='/about'  element={<DisplayEvent user={this.state.user}/>}/>
           <Route path ='/USERS'  element={<Users/>}/>
           <Route path ='/notifs'  element={<Notifs/>}/>
           {/* <Route path ='/forgot'  element={<Forgot/>}/> */}
