@@ -26,7 +26,7 @@ export default class DisplayEvent extends Component{
     
      
     componentDidMount(){
-        var url1 = '/event';
+        var url1 = 'http://localhost:9000/event';
         
          axios.get(url1, {
             headers :{
