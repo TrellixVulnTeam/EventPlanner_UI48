@@ -35,6 +35,8 @@ func CreateEvent() gin.HandlerFunc {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var event models.Event
 
+		
+
 		if err := c.BindJSON(&event); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error_aa": err.Error()})
 			return
@@ -114,7 +116,10 @@ func GetEvents() gin.HandlerFunc {
 		}
 		temp, err := bson.Marshal(weather)
 		fmt.Print(temp)
-		c.JSON(http.StatusOK, allusers)
+		c.JSON(http.StatusOK,
+			gin.H{
+				"weather" : weather,
+				"data" : allusers} )
 	}
 }
 

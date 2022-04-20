@@ -44,7 +44,7 @@ type Ticket struct {
 	Ticket_id  string             `json:"ticket_id"`
 }
 type Payment struct {
-	quantity 	*string 		`json:"quantity"`
+	Quantity 	*string 		`json:"quantity"`
 	User_id		*string 		`json:"user_id"`
 	Event_id 	*string 		`json:"event_id"`
 }
