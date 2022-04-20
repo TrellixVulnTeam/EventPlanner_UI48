@@ -43,3 +43,8 @@ type Ticket struct {
 	Updated_at time.Time          `json:"updated_at"`
 	Ticket_id  string             `json:"ticket_id"`
 }
+type Payment struct {
+	quantity 	*string 		`json:"quantity"`
+	User_id		*string 		`json:"user_id"`
+	Event_id 	*string 		`json:"event_id"`
+}
