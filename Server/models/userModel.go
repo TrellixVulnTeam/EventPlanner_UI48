@@ -48,3 +48,10 @@ type Payment struct {
 	User_id		*string 		`json:"user_id"`
 	Event_id 	*string 		`json:"event_id"`
 }
+
+type Query struct {
+	ID         primitive.ObjectID `bson:"_id"`
+	Name		*string 		`json:"First_name"`
+	Message 	*string 		`json:"Message"`
+	Email		*string 		`json:"Email"`
+}

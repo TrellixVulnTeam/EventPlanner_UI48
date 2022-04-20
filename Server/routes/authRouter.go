@@ -17,3 +17,8 @@ func Notifications(incomingRoutes *gin.Engine) {
 func Payment(incomingRoutes *gin.Engine) {
 	incomingRoutes.POST("/payment", controller.CreateCheckoutSession())
 }
+
+func Query(incomingRoutes *gin.Engine){
+	incomingRoutes.POST("/query", controller.Query())
+	incomingRoutes.GET("/query", controller.GetQueries())
+}

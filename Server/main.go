@@ -26,6 +26,7 @@ func main() {
 	routes.HomeRoutes(router)
 	routes.Notifications(router)
 	routes.Payment(router)
+	routes.Query(router)
 
 	router.Run(":" + port)
 
