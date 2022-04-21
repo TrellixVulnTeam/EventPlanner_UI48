@@ -31,7 +31,7 @@ import { FormControl } from '@mui/material';
    
    
 
-
+    
     changeHandler = e => {
 		this.setState({ [e.target.name]: e.target.value })
 	}
@@ -49,10 +49,15 @@ import { FormControl } from '@mui/material';
 			})
 			.then(response => {
 				console.log(response)
+				if(response){
+					alert('Signup Successful - Please Login')
+				}
                 
 			})
 			.catch(error => {
-				console.log(error)
+				if(error){
+					alert("password should have 9 characters or free service account limit reached used our github email id and password mentioned in sprint 4.md")
+				}
 			})
             this.setState({
                 First_name: "",
@@ -75,34 +80,34 @@ import { FormControl } from '@mui/material';
             <Paper elevation={20} style={paperStyle}>
                 
                 <form onSubmit={this.submitHandler}>
-                    <TextField fullWidth label='First Name' placeholder="Enter your first name" type="text"
+                    <TextField id="text" fullWidth label='First Name' placeholder="Enter your first name" type="text"
 							name="First_name"
 							value={First_name}
-							onChange={this.changeHandler} />
+							onChange={this.changeHandler} required />
                     <TextField fullWidth label='Last Name' placeholder="Enter your last name " type="text"
 							name="Last_name"
 							value={Last_name}
-							onChange={this.changeHandler} />
+							onChange={this.changeHandler}  required />
                     <TextField fullWidth label='Email' placeholder="Enter your email" type="email"
 							name="Email"
 							value={Email}
-							onChange={this.changeHandler} />
+							onChange={this.changeHandler}  required />
                  
                    
                     
                     <TextField fullWidth label='Phone Number' placeholder="Enter your phone number" type="tel"
 							name="Phone"
 							value={Phone}
-							onChange={this.changeHandler} />
-                    <TextField fullWidth label='Password' placeholder="Enter your password" type='password' 
+							onChange={this.changeHandler}   required/>
+                    <TextField fullWidth label='Password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your password" type='password' 
 							name="Password"
 							value={	Password}
-							onChange={this.changeHandler}/>
+							onChange={this.changeHandler}  required/>
               
                     <TextField fullWidth label='USERTYPE' type='text' placeholder="enter your user_type" 
 							name="User_type"
 							value={	User_type}
-							onChange={this.changeHandler}/>
+							onChange={this.changeHandler}  required/>
                    
                     <Button type='submit' variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}}>Sign up</Button>
 
