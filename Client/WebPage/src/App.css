@@ -54,7 +54,7 @@ body {
   border: none;
 
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
-  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 13px 10px -7px white;
 }
 
 .event div:nth-of-type(1) {
@@ -83,7 +83,7 @@ body {
 
 .event div:nth-of-type(3) {
   z-index: 2;
-  background-color: #343739;
+  background-color: #e6f7ff;
   padding: 16px 24px 24px 24px;
 
   position: absolute;
@@ -98,13 +98,13 @@ body {
   font-size: 13px;
   letter-spacing: 2px;
   font-weight: 500;
-  color: #f0f0f0;
+  color: #000000;
 }
 
 .event div:nth-of-type(3) h3 {
   margin-top: 5px;
   font-family: "Roboto Slab", serif;
-  color: #f9d3b4;
+  color: #000000;
 }
 
 .event:hover div:nth-of-type(2) {
@@ -143,7 +143,7 @@ table, th, td {
   border:2px solid lightblue;
 }
 
-button{
+.ss{
   background-color: black;
   color: white;
   font-size: 20px;
@@ -169,4 +169,12 @@ button{
   background: var(--input-background);
   transition: border .3s ease;
  
+}
+
+.about {
+  min-height: 20vh;
+  width: 100vw;
+  padding: 10px 50px 50px 50px;
+  background:  #e6fff7;
+  color: black;
 }
