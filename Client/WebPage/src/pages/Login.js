@@ -41,7 +41,7 @@ import { Link } from 'react-router-dom';
 		
      
 		axios
-			.post('http://localhost:9000/users/login ', this.state,{
+			.post('/users/login ', this.state,{
 				headers :{
 				  'Content-Type' : 'application/x-www-form-urlencoded',
                    
@@ -54,6 +54,14 @@ import { Link } from 'react-router-dom';
                 // if(response.data.token){
                 //     alert("logged in successfull")
                 // }
+				console.log("logiinnnnnnnnnn")
+				console.log(response)
+				
+				if(response.status != 200){
+					alert("Wrong Email 0r Password")
+					
+				}
+				
 
                 localStorage.setItem('token', response.data.token);
                  localStorage.setItem('token1', response.data.user_id);
@@ -68,6 +76,10 @@ import { Link } from 'react-router-dom';
 				// console.log(response.data.token)
 			})
 			.catch(error => {
+
+				if (error){
+					alert("Wrong Email 0r Password")
+				}
 				
 			})
             this.setState({
@@ -95,19 +107,19 @@ import { Link } from 'react-router-dom';
             <Paper elevation={20} style={paperStyle}>
                 <Grid align='center'>
                     <Avatar style={avatarStyle}>
-                        hh
+                        Log
                     </Avatar>
-                    <h2 style={headerStyle}>Login</h2>
+                   
                     <Typography variant='caption' gutterBottom>Please Login here</Typography>
                 </Grid>
                 <form onSubmit={this.submitHandler}>
                   
-                    <TextField fullWidth label='Email' placeholder="Enter your email" type="email"
+                    <TextField  id="mui-1" fullWidth label='Email' placeholder="Enter your email" type="email"
 							name="Email"
 							value={Email}
 							onChange={this.changeHandler} />
                 
-                    <TextField fullWidth label='Password' placeholder="Enter your password" type='password' 
+                    <TextField id="mui-2" fullWidth label='Password' placeholder="Enter your password" type='password' 
 							name="Password"
 							value={	Password}
 							onChange={this.changeHandler}/>
@@ -117,7 +129,7 @@ import { Link } from 'react-router-dom';
 							value={	User_type}
 							onChange={this.changeHandler}/> */}
                    
-                    <Button type='submit' variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}}>Login</Button>
+                    <Button className='MuiButton-root' type='submit' variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}}>Login</Button>
 		    <a href="http://localhost:3000/Signup">
 			<Button id="signup" variant='contained' color='primary' style={{marginTop: "15px",marginLeft:"90px"}} to ="/Signup">SignUp</Button>
 		    </a>
