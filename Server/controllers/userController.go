@@ -23,6 +23,7 @@ import (
 var userCollection *mongo.Collection = database.OpenCollection(database.Client, "user")
 var validate = validator.New()
 
+// Used for encrypting password in the database
 func HashPassword(password string) string {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
@@ -43,6 +44,7 @@ func VerifyPassword(userPassword string, providedPassword string) (bool, string)
 	return check, msg
 }
 
+//Lets user signup for the application.
 func Signup() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
@@ -110,6 +112,7 @@ func Signup() gin.HandlerFunc {
 
 }
 
+// Retrive Signuped users from the database
 func Login() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Header("Content-Type", "application/x-www-form-urlencoded")
@@ -158,6 +161,7 @@ func Login() gin.HandlerFunc {
 	}
 }
 
+// Get the list of all the avavilable user along with their type
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if err := helper.CheckUserType(c, "ADMIN"); err != nil {
@@ -201,7 +205,7 @@ func GetUsers() gin.HandlerFunc {
 		c.JSON(http.StatusOK, allusers[0])
 	}
 }
-
+// Get a specific user by specifying their user_id.
 func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		userId := c.Param("user_id")

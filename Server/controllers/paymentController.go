@@ -22,6 +22,8 @@ import (
 
 var validatePayment = validator.New()
 
+
+// uses stripe checkoutSession and create the objects and price as specified in the request
 func CreateCheckoutSession() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var eventCollection *mongo.Collection = database.OpenCollection(database.Client, "events")

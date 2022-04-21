@@ -22,6 +22,7 @@ import (
 var ticketCollection *mongo.Collection = database.OpenCollection(database.Client, "tickets")
 var validateTicket = validator.New()
 
+//Sends the Ticket to specified email address 
 func PurchaseTicket() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Header("Content-Type", "application/x-www-form-urlencoded")
@@ -72,6 +73,8 @@ func PurchaseTicket() gin.HandlerFunc {
 		return
 	}
 }
+
+// Get the payment status for specified ticket_id
 func GetTicket() gin.HandlerFunc {
 	return func(c *gin.Context) {
 

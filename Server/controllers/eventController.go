@@ -25,6 +25,8 @@ import (
 var eventCollection *mongo.Collection = database.OpenCollection(database.Client, "events")
 var validateEvent = validator.New()
 
+
+// Admin can create a new event, deletion happens as the time passes.
 func CreateEvent() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Header("Content-Type", "application/x-www-form-urlencoded")
@@ -67,6 +69,7 @@ func CreateEvent() gin.HandlerFunc {
 	}
 }
 
+
 type weatherData struct {
 	Name string `json:"name`
 	Main struct {
@@ -77,6 +80,7 @@ type weatherData struct {
 	} `json:"wind"`
 }
 
+// Any user can fetch upcoming events.
 func GetEvents() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
@@ -123,6 +127,7 @@ func GetEvents() gin.HandlerFunc {
 	}
 }
 
+// Server sends the weather information for the desired event location and time.
 func GetWeather() (weatherData, error) {
 	apiConfig := os.Getenv("API_CONFIG")
 	resp, err := http.Get("http://api.openweathermap.org/data/2.5/weather?APPID=" + apiConfig + "&q=gainesville")

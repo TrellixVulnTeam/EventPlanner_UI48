@@ -21,6 +21,7 @@ import (
 var queryCollection *mongo.Collection = database.OpenCollection(database.Client, "Queries")
 var validateQuery = validator.New()
 
+// Allows the Users to post the query, saved in MongDB
 func Query() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
@@ -62,7 +63,7 @@ func Query() gin.HandlerFunc {
 		return
 	}
 }
-
+// Admin can retrive all the queries
 func GetQueries() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
