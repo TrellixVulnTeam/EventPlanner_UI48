@@ -12,17 +12,19 @@ import  Notifs from "./pages/Notifs";
 import {BrowserRouter as Router, Routes, Route} 
 from 'react-router-dom';
 import axios from 'axios'
-
+import DisplayEvent1 from "./pages/importan";
+import Contact from "./pages/Contact";
 export default class App extends Component
  {
     state = {
        user: []
       }
+
+
   componentDidMount(){
 
-
-    var url = 'http://localhost:9000/users?user_id=' + localStorage.getItem('token1');
-    // var url = 'http://localhost:9000/event';
+    // var url = '/users/ localStorage.getItem("token1")';
+    var url = '/users?user_id=' + localStorage.getItem('token1');
     
     
      axios.get(url, {
@@ -34,8 +36,7 @@ export default class App extends Component
 
 
 
-          token : localStorage.getItem('token'),
-
+          token : localStorage.getItem('token')
         }}).then(
 
            res =>{
@@ -44,7 +45,8 @@ export default class App extends Component
             //   user: res.data
             // });
             //     console.log(res);
-
+            console.log("response")
+            console.log(res.data);
             this.setUser(res.data);
            },
            err => {
@@ -59,6 +61,8 @@ export default class App extends Component
   }
    render(){
      console.log("i am jenil.")
+     console.log("heleos")
+    //  console.log(this.state.user.user_items.user_id);
      console.log(this.state.user);
   return (
     <div className="App">
@@ -73,6 +77,8 @@ export default class App extends Component
           <Route path ='/Login'  element={<Login setUser={this.setUser}/>}/>
           <Route path ='/Signup'  element={<Signup/>}/>
           <Route path ='/about'  element={<DisplayEvent user={this.state.user}/>}/>
+          {/* <Route path ='/about'  element={<DisplayEvent1 user={this.state.user}/>}/> */}
+          <Route path ="/contact" element={<Contact/>}/>
           <Route path ='/USERS'  element={<Users/>}/>
           <Route path ='/notifs'  element={<Notifs/>}/>
           {/* <Route path ='/forgot'  element={<Forgot/>}/> */}
