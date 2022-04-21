@@ -21,20 +21,26 @@ export default class Notifs extends Component  {
 		
 		
      
-		// axios
-		// 	.post('http://localhost:9000/admin/notifs', this.state.message,{
-		// 		headers :{
-		// 			'Content-Type' : 'application/x-www-form-urlencoded',
-		// 			Accept: 'application/json',
-		// 			 'Content-Type': 'application/json',
-		// 			token : localStorage.getItem('token'),
-		// 	}}).then(response => {
-        //          console.log("yippee")
-        //         console.log(response)
-		// 	})
-		// 	.catch(error => {
-		// 		console.log(error)
-		// 	})
+		axios
+			.post('/admin/notifs', this.state.message,{
+				headers :{
+					'Content-Type' : 'application/x-www-form-urlencoded',
+					Accept: 'application/json',
+					 'Content-Type': 'application/json',
+					token : localStorage.getItem('token'),
+			}}).then(response => {
+                 console.log("yippee")
+                console.log(response)
+			})
+			.catch(error => {
+				console.log(error)
+			})
+            this.setState({
+                
+                // User_type:'',
+                type: "sale",
+                message: ""
+                });
             }
     render(){
         const { message } = this.state;
@@ -79,7 +85,7 @@ export default class Notifs extends Component  {
                         }}> 
                         
                         <option value = "sale">SALE</option>
-                        <option value ="event_attended"> event_attended</option>
+                        
                         
                         </select>
                        

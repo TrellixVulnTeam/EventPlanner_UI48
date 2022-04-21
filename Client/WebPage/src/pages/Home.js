@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import {Link} from "react-router-dom";
 import BannerImage from "../assets/image.jpeg";
 import "../styles/Home.css";
-
+import Events from "./Events";
 
 export default class Home extends Component{
 
@@ -45,6 +45,7 @@ export default class Home extends Component{
         console.log(this.props.user);
         if(this.props.user!="" ){
             return (
+                <>
                 <div className= "home" style={
                     {backgroundImage: `url(${BannerImage})`,
                      backgroundPosition: "center",
@@ -55,15 +56,48 @@ export default class Home extends Component{
                      
         
                     <div className="headerContainer">
-                            <h1>Plan</h1>
+                            
                         
                             <p>Greetings {this.props.user.first_name} Plan new Events or Discover something more!</p>
                             <Link to ="/about">
-                            <button>Discover !</button>
+                            <button>Discover!</button>
                             </Link> 
                         </div>
-                </div>
 
+                        {/* <div className="headerContainer">
+                            
+                        
+                            <p>Greetings {this.props.user.first_name} Plan new Events or Discover something more!</p>
+                            <Link to ="/about">
+                            <button>Discover!</button>
+                            </Link> 
+                        </div> */}
+
+
+                </div>
+                <div className="about event">
+        <h1>About Us</h1>
+        <p>Hello, wishes from Event Planners</p>
+        <h3>Frontend Developer : Jenil and Diskha </h3>
+        <h3>Backend Developer : Rahul and Simran </h3>
+     
+        <p>
+          Event Planner is a buying and selling platform for events and venues in the state of Florida.<br/>
+            We are a team of event planners that are passionate about Enjoying our time through meeting other people during events.
+        </p>
+        
+        <p>
+          Event Planner website is great for people who want to plan events and venues for their friends and family.
+         <br/> Participation in Events and Venues is a great way to meet new people  and enjoy the time and this website makes hassle free of these work
+        </p>
+       
+      
+        <h3>Contact for more details or query through contact Page</h3>
+        <br />
+        
+         
+      </div>
+                </>
             )
         }
 
@@ -81,6 +115,7 @@ export default class Home extends Component{
                
        
      return(
+         <>
         <div className= "home" style={
             {backgroundImage: `url(${BannerImage})`,
              backgroundPosition: "center",
@@ -91,15 +126,45 @@ export default class Home extends Component{
              
 
             <div className="headerContainer">
-                    <h1>Plan</h1>
+                   
                 
                     <p>Plan new Events or Discover something more!</p>
                     <Link to ="/about">
                     <button>Discover !</button>
                     </Link> 
                 </div>
+                      
         </div>
 
+        <div className="about event">
+        <h1>About Us</h1>
+        <p>Hello, wishes from Event Planners</p>
+        <h3>Frontend Developer : Jenil and Diskha </h3>
+        <h3>Backend Developer : Rahul and Simran </h3>
+     
+        <p>
+          Event Planner is a buying and selling platform for events and venues in the state of Florida.<br/>
+            We are a team of event planners that are passionate about Enjoying our time through meeting other people during events.
+        </p>
+        
+        <p>
+          Event Planner website is great for people who want to plan events and venues for their friends and family.
+         <br/> Participation in Events and Venues is a great way to meet new people  and enjoy the time and this website makes hassle free of these work
+        </p>
+       
+      
+        <h3>Contact for more details or query through contact Page</h3>
+        <br />
+        
+         
+      </div>
+
+
+    
+        
+
+                    
+        </>
         
     );
 }

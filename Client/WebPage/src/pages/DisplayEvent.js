@@ -26,7 +26,7 @@ export default class DisplayEvent extends Component{
     
      
     componentDidMount(){
-        var url1 = 'http://localhost:9000/event';
+        var url1 = '/event';
         
          axios.get(url1, {
             headers :{
@@ -37,9 +37,10 @@ export default class DisplayEvent extends Component{
             }}).then(
 
                res =>{
-
-               this.setState({ persons: res.data[0].user_items ,
-                               event_id: res.data[0].user_items._id,
+                   console.log("checking")
+               console.log(res.data.data[0].user_items);
+               this.setState({ persons: res.data.data[0].user_items ,
+                               event_id: res.data.data[0].user_items._id,
                                user_id : this.props.user.ID});
                   // var atom = res.data.user_items;
                 console.log("i am jenil bharat jain and ")
@@ -61,7 +62,7 @@ export default class DisplayEvent extends Component{
         console.log(this.state)
        
      
-		axios.post('http://localhost:9000/payment ',{quantity:this.state.quantity,
+		axios.post('/payment ',{quantity:this.state.quantity,
         user_id:this.state.user_id,event_id:this.state.event_id},{
 				headers :{
 				  'Content-Type' : 'application/x-www-form-urlencoded',
@@ -139,7 +140,7 @@ export default class DisplayEvent extends Component{
         if(this.state.persons.length !=0 ){
             return(
            
-            <div className="container"  >  {   this.state.persons
+            <div className="container"  data-testid="app1">  {   this.state.persons
                 .map(person =>
                    <div className="event" key={person._id}>
                         <div>
@@ -155,8 +156,12 @@ export default class DisplayEvent extends Component{
                             <br/>Date: {person.date}</span>
                             <h3>{person.location}</h3>
                              <span> <h3>Price : ${person.price}</h3> </span>
-                           
-                            <button   onClick={ 
+                             <form onSubmit={this.submitHandler}>
+                                <input className="form-field" fullWidth label='quantity' placeholder="Enter your quantity" type='text' 
+							name="quantity" 
+							onChange={this.changeHandler} />
+                            </form>
+                            <button className="ss"  onClick={ 
                                 
                              e => { 
                                 
@@ -166,11 +171,7 @@ export default class DisplayEvent extends Component{
                               
                              }
                              >  BUY Tickets  </button>
-                             <form onSubmit={this.submitHandler}>
-                                <input className="form-field" fullWidth label='quantity' placeholder="Enter your quantity" type='text' 
-							name="quantity" 
-							onChange={this.changeHandler} />
-                            </form>
+                            
                         </div>
 
                         
@@ -189,7 +190,7 @@ export default class DisplayEvent extends Component{
 
 
         return(
-            <><h1 style={{color:"white"}}>Login to see Events</h1></>
+            <><h1 style={{color:"white"}} data-testid="app1">Login to see Events</h1></>
         )
 
     }
