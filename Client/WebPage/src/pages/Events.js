@@ -41,7 +41,7 @@ import { FormControl } from '@mui/material';
 		
 		
 		axios
-			.post('http://localhost:9000/event ', this.state,{
+			.post('/event ', this.state,{
 				headers :{
 					'Content-Type' : 'application/x-www-form-urlencoded',
 					Accept: 'application/json',
@@ -84,30 +84,30 @@ import { FormControl } from '@mui/material';
 							type="text"
 							name="Event_name"
 							value={Event_name}
-							onChange={this.changeHandler} />
+							onChange={this.changeHandler} required />
                     <TextField fullWidth type="date"
 							name="Date"
 							value={Date}
-							onChange={this.changeHandler} />
+							onChange={this.changeHandler} required/>
                     <TextField fullWidth label='Location' placeholder="Enter your Location" type="text"
 							name="Location"
 							value={Location}
-							onChange={this.changeHandler} />
+							onChange={this.changeHandler} required />
                  
                    
                     
                     <TextField fullWidth label='Time' placeholder="Enter your time for the Event" type="time"
 							name="Time"
 							value={	Time}
-							onChange={this.changeHandler} />
+							onChange={this.changeHandler} required />
                     <TextField fullWidth label='Organizer' placeholder="Enter your Organizer" type="text"
 							name="Organizer"
 							value={	Organizer}
-							onChange={this.changeHandler}/>
+							onChange={this.changeHandler} required/>
 					<TextField fullWidth label='Price' placeholder="Enter your Price" type="number"
 							name="Price"
 							value={	Price }
-							onChange={this.changeHandler}/>
+							onChange={this.changeHandler} required/>
               
               
                    
