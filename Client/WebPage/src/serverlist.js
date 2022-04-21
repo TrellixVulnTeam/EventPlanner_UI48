@@ -2,6 +2,10 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports= app =>{
 
+
+    
+ 
+
 app.use(
     createProxyMiddleware('/event', {
 
@@ -14,7 +18,8 @@ app.use(
     
 )
 )
-
+console.log("serverlist.js")
+console.log(localStorage.getItem('token'))
 var url = '/users?user_id=' + localStorage.getItem('token1');
 app.use(
    
@@ -25,5 +30,31 @@ app.use(
     }
     
 ))
+
+
+app.use(
+   
+    createProxyMiddleware('/payment', {
+
+        target:'http://localhost:9000',
+        changeOrigin:true,
+    }
+    
+))
+
+
+app.use(
+   
+    createProxyMiddleware('/query', {
+
+        target:'http://localhost:9000',
+        changeOrigin:true,
+    }
+    
+))
+
+
+
+
 
 }
