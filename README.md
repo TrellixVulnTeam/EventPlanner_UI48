@@ -12,4 +12,4 @@ Application Layers : AWS EC2, Neflify
 1. Simran Bhagwandasani - Backend
 2. Rahul Bhatia - Backend
 3. Jenil Jain - FrontEnd
-4. Diksha Verma - FrontENd
+4. Diksha Verma - FrontEnd
