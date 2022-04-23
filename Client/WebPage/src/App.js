@@ -12,7 +12,7 @@ import  Notifs from "./pages/Notifs";
 import {BrowserRouter as Router, Routes, Route} 
 from 'react-router-dom';
 import axios from 'axios'
-import DisplayEvent1 from "./pages/importan";
+// import DisplayEvent1 from "./pages/importan";
 import Contact from "./pages/Contact";
 export default class App extends Component
  {
