@@ -161,6 +161,7 @@ export default class DisplayEvent extends Component{
 							name="quantity" 
 							onChange={this.changeHandler} />
                             </form>
+                            <Link to = "/shop">
                             <button className="ss"  onClick={ 
                                 
                              e => { 
@@ -170,7 +171,7 @@ export default class DisplayEvent extends Component{
                             }
                               
                              }
-                             >  BUY Tickets  </button>
+                             >  BUY Tickets  </button></Link>
                             
                         </div>
 
